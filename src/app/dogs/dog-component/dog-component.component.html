@@ -8,12 +8,12 @@
             <thead>
                 <tr>
                     <th scope="col" class="d-flex flex-column align-items-center">Todo <input class="form-check-input"
-                            type="checkbox" (click)="allDogs()"></th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Nombre latino</th>
-                    <th scope="col">Tipo de animal</th>
-                    <th scope="col">Habitad</th>
-                    <th scope="col">Localización</th>
+                            type="checkbox" (click)="allDogs()" [(ngModel)]="checkedAll"></th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Latin Name</th>
+                    <th scope="col">Animal Type</th>
+                    <th scope="col">Habitat</th>
+                    <th scope="col">Localization</th>
                 </tr>
             </thead>
             <tbody *ngIf="!loading">

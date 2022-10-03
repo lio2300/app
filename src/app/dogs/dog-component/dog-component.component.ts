@@ -11,9 +11,10 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 })
 export class DogComponentComponent implements OnInit {
   public page: number = 1;
-  public Dogs: Dogs[] | null = [];
+  public Dogs!: Dogs[];
   public loading: boolean = true;
   public loadingDogs: boolean = false;
+  public checkedAll: boolean = false;
 
   constructor(
     private $DogsService: DogsServices,
@@ -26,6 +27,7 @@ export class DogComponentComponent implements OnInit {
   }
 
   loadDogs() {
+    this.loading = true;
     this.$DogsService.getDogsGitHub().subscribe((dogs: Dogs[]) => {
       this.Dogs = dogs;
       this.loading = false;
@@ -33,7 +35,7 @@ export class DogComponentComponent implements OnInit {
     });
   }
 
-  addDogs(id: number) {
+  addDogs(id: string) {
     const indexDog = this.Dogs?.findIndex((d) => d.id === id) ?? -1;
     this.Dogs && (this.Dogs[indexDog].add = !this.Dogs[indexDog].add);
   }
@@ -54,10 +56,17 @@ export class DogComponentComponent implements OnInit {
       }) ?? [];
 
     dataDogs.length > 0 &&
-      this.$DogsService.createDogs(dataDogs).subscribe((dogs) => {
-        this.loadingDogs = false;
-        this.toastr.success('Successfully created dog');
-      });
+      this.$DogsService.createDogs(dataDogs).subscribe(
+        (dogs) => {
+          this.loadingDogs = false;
+          this.toastr.success('Successfully created dog');
+          this.loadDogs();
+          this.checkedAll = false;
+        },
+        (err) => {
+          this.loadDogs();
+        }
+      );
     dataDogs.length === 0 && this.toastr.info('Select a dog');
   }
 }

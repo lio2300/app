@@ -1,1 +1,49 @@
-<p>dogs-api-component works!</p>
+<div class="dogs-container">
+    <div class="card d-flex flex-row justify-content-end p-3 mb-4">
+        <button [disabled]="loadingDogs" class="btn btn-primary" (click)="createDog()"><i *ngIf="loadingDogs"
+                class="fa fa-spinner fa-spin me-2" aria-hidden="true"></i>Create Dog</button>
+    </div>
+    <div class="card">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Latin Name</th>
+                    <th scope="col">Animal Type</th>
+                    <th scope="col">Habitat</th>
+                    <th scope="col">Localization</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody *ngIf="!loading">
+                <tr *ngFor="let dog of Dogs; index as i">
+                    <td>
+                        <img [src]="dog.image_link" class="me-2" style="width: 5rem">
+                        {{ dog.name }}
+                    </td>
+                    <td>{{ dog.latin_name }}</td>
+                    <td>{{ dog.animal_type }}</td>
+                    <td>{{ dog.habitat }}</td>
+                    <td>{{ dog.geo_range }}</td>
+                    <td>
+                        <div class="d-flex flex-column flex-sm-row">
+                            <button (click)="updateDog(dog)" class="btn btn-success mb-2 mb-sm-0 me-sm-2"><i
+                                    class="fa fa-pencil" aria-hidden="true"></i></button>
+                            <button (click)="deleteDog(dog._id)" class="btn btn-danger"><i class="fa fa-trash"
+                                    aria-hidden="true"></i></button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <ngb-pagination *ngIf="!loading" class="d-flex justify-content-end" [collectionSize]="total" [pageSize]="limit"
+            [(page)]="page" (pageChange)="onChangePage($event)">
+            <ng-template ngbPaginationPrevious><i class="fa fa-angle-double-left" aria-hidden="true"></i></ng-template>
+            <ng-template ngbPaginationNext><i class="fa fa-angle-double-right" aria-hidden="true"></i></ng-template>
+        </ngb-pagination>
+
+        <div *ngIf="loading" class="d-flex justify-content-center m-3">
+            <i style="font-size: 30px;" class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+        </div>
+    </div>
+</div>

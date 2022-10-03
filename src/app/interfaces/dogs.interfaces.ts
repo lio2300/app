@@ -12,6 +12,7 @@ export interface Dogs {
   diet: string;
   geo_range: string;
   image_link: string;
-  id: number;
+  id: string;
+  _id: string;
   add?: boolean;
 }
