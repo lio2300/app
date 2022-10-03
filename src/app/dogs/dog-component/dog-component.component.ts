@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Dogs } from 'src/app/interfaces/dogs.interfaces';
 import { DogsServices } from 'src/app/services/dogs.services.service';
 import { ToastrService } from 'ngx-toastr';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-dog-component',
@@ -16,7 +17,8 @@ export class DogComponentComponent implements OnInit {
 
   constructor(
     private $DogsService: DogsServices,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {

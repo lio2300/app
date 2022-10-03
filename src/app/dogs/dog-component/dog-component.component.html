@@ -1,6 +1,5 @@
 <div class="dogs-container">
     <div class="card d-flex flex-row justify-content-end p-3 mb-4">
-        <button class="btn btn-primary me-3">Create Dog</button>
         <button [disabled]="loadingDogs" class="btn btn-primary" (click)="createMarkedData()"><i *ngIf="loadingDogs"
                 class="fa fa-spinner fa-spin me-2" aria-hidden="true"></i>Create Marked Data</button>
     </div>
@@ -43,3 +42,16 @@
         </div>
     </div>
 </div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        Hola
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+    </div>
+</ng-template>

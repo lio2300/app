@@ -1,0 +1,14 @@
+<div class="d-flex m-5">
+    <ul ngbNav #nav="ngbNav" class="nav-pills" orientation="vertical">
+        <li *ngFor="let menu of verticalMenu" ngbNavItem="{{menu.link}}" [routerLink]="menu.path">
+            <a ngbNavLink>{{menu.name}}</a>
+            <ng-template ngbNavContent>
+                <ng-container *ngTemplateOutlet="content"></ng-container>
+            </ng-template>
+        </li>
+    </ul>
+    <ng-template #content>
+        <ng-content select=".content"></ng-content>
+    </ng-template>
+    <div [ngbNavOutlet]="nav" class="ms-4"></div>
+</div>
