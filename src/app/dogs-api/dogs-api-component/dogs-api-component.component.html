@@ -1,7 +1,48 @@
 <div class="dogs-container">
-    <div class="card d-flex flex-row justify-content-end p-3 mb-4">
+    <div class="w-100 d-flex flex-row justify-content-end mb-4">
         <button [disabled]="loadingDogs" class="btn btn-primary" (click)="createDog()"><i *ngIf="loadingDogs"
                 class="fa fa-spinner fa-spin me-2" aria-hidden="true"></i>Create Dog</button>
+    </div>
+    <div class="mb-4">
+        <div class="input-group w-100">
+            <input type="search" [(ngModel)]="search" class="form-control filter-search"
+                placeholder="Search by Name, Latin Name, Animal Type, Habitat, Localization" aria-label="Search by Name"
+                aria-describedby="basic-addon2">
+            <button (click)="getDogs()" class="input-group-text bg-primary text-white" id="basic-addon2">Search</button>
+
+        </div>
+    </div>
+    <div class="card d-flex flex-column align-items-start p-3 mb-4">
+        <div class="d-flex flex-row justify-content-between col-12">
+            <b>Filters:</b>
+            <div>
+                <button [disabled]="loadingDogs" class="btn btn-primary me-3" (click)="getDogs()"><i *ngIf="loadingDogs"
+                        class="fa fa-spinner fa-spin me-2" aria-hidden="true"></i>Filter</button>
+                <button class="btn btn-warning" (click)="clearFilters()"><i class="fa fa-eraser me-2"
+                        aria-hidden="true"></i>Clear Filters</button>
+            </div>
+        </div>
+        <div class="col-12 m-3 d-flex">
+            <div class="col-4 me-3">
+                <span>Sort by:</span>
+                <select [(ngModel)]="sortBy" class="form-control">
+                    <option value="">Select a option</option>
+                    <option value="name">Name</option>
+                    <option value="latin_name">Latin Name</option>
+                    <option value="animal_type">Animal Type</option>
+                    <option value="habitat">Habitat</option>
+                    <option value="geo_range">Localization</option>
+                </select>
+            </div>
+            <div class="col-4">
+                <span>Order by:</span>
+                <select [(ngModel)]="orderBy" class="form-control">
+                    <option value="">Select a option</option>
+                    <option value="asc">Ascending</option>
+                    <option value="desc">Descending</option>
+                </select>
+            </div>
+        </div>
     </div>
     <div class="card">
         <table class="table table-striped">

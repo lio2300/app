@@ -19,6 +19,9 @@ export class DogsApiComponentComponent implements OnInit {
   public total: number = 0;
   public skip: number = 0;
   public limit: number = 10;
+  public search: string = '';
+  public sortBy: string = '';
+  public orderBy: string = '';
 
   constructor(
     private $DogsService: DogsServices,
@@ -30,10 +33,22 @@ export class DogsApiComponentComponent implements OnInit {
     this.getDogs();
   }
 
+  clearFilters() {
+    this.search = '';
+    this.sortBy = '';
+    this.orderBy = '';
+  }
+
   getDogs() {
     this.loading = true;
     this.$DogsService
-      .getDogs({ skip: this.skip, limit: this.limit })
+      .getDogs({
+        skip: this.skip,
+        limit: this.limit,
+        search: this.search,
+        sortBy: this.sortBy,
+        orderBy: this.orderBy,
+      })
       .subscribe((dogsTable) => {
         this.Dogs = dogsTable.data;
         this.total = dogsTable.total;
@@ -51,7 +66,7 @@ export class DogsApiComponentComponent implements OnInit {
     const componentDog = this._modalService.open(CreateUpdateDogsComponent, {
       size: 'lg',
     });
-    componentDog.componentInstance.dataDog = { title: 'Create Dog' };
+    componentDog.componentInstance.DogsComponent = { title: 'Create Dog' };
     componentDog.result.then(
       (res) => {
         const { data, created } = res;

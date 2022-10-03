@@ -46,8 +46,14 @@ export class DogsServices {
     return this.http.post(`${API}/dogs/create`, Dogs);
   }
 
-  getDogs({ skip = 0, limit = 0 }): Observable<DogsTable> {
-    let params = { skip, limit };
+  getDogs({
+    skip = 0,
+    limit = 0,
+    search = '',
+    sortBy = '',
+    orderBy = '',
+  }): Observable<DogsTable> {
+    let params = { skip, limit, search, sortBy, orderBy };
     return this.http.get(`${environment.API}/api/v1/dogs/all`, { params }).pipe(
       map((resp) => {
         return <DogsTable>resp;

@@ -5,6 +5,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 import { DogsApiComponentComponent } from './dogs-api-component/dogs-api-component.component';
 import { DeleteDogsComponent } from './modals/delete-dogs/delete-dogs.component';
@@ -27,6 +28,7 @@ import { CreateUpdateDogsComponent } from './modals/create-update-dogs/create-up
     }),
     FormlyBootstrapModule,
     ReactiveFormsModule,
+    FormsModule,
   ],
 })
 export class DogsApiModule {}
