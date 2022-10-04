@@ -56,6 +56,14 @@
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
+
+            <tbody *ngIf="Dogs.length===0">
+                <tr>
+                    <td colspan="6">
+                        No Data Records Found
+                    </td>
+                </tr>
+            </tbody>
             <tbody *ngIf="!loading">
                 <tr *ngFor="let dog of Dogs; index as i">
                     <td>

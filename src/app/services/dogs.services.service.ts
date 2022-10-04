@@ -65,6 +65,18 @@ export class DogsServices {
     );
   }
 
+  getDogsStatistics(): Observable<any> {
+    return this.http.get(`${environment.API}/api/v1/dogs/statistics`).pipe(
+      map((resp) => {
+        return resp;
+      }),
+      catchError((err) => {
+        this.toastr.error(`Error de servicio`);
+        return throwError(err);
+      })
+    );
+  }
+
   deleteDogs({ _id }: { _id: string }): Observable<Dogs> {
     let params = { _id };
     return this.http.delete(`${environment.API}/api/v1/dogs`, { params }).pipe(

@@ -1,1 +1,21 @@
-<p>dog-statistics works!</p>
+<div class="col-12 mb-5">
+    <h2>Zoo Animal API</h2>
+</div>
+<div class="col-12">
+    <p>
+        <ngb-alert [type]="'info'" [dismissible]="false">
+            <strong>Hi!</strong> Welcome to the animals API, on this website you can save your favorite animals and
+            you can see them at any time.
+        </ngb-alert>
+    </p>
+</div>
+<div class="col-12 d-flex justify-content-center">
+    <img src="https://drive.google.com/uc?export=view&id=1a1a7FdEoU0jnAPiv05dk5koFLXsModAc" />
+</div>
+<div class="d-flex flex-column" *ngIf="!loading">
+    <div class="col-12 mt-5 d-flex justify-content-center">
+        <canvas width="800px" baseChart [data]="barChartData" [options]="barChartOptions" [plugins]="barChartPlugins"
+            [legend]="barChartLegend" [type]="'bar'">
+        </canvas>
+    </div>
+</div>
