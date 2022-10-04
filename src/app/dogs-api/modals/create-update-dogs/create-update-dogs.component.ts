@@ -10,9 +10,19 @@ import { Dogs } from 'src/app/interfaces/dogs.interfaces';
   styleUrls: ['./create-update-dogs.component.scss'],
 })
 export class CreateUpdateDogsComponent implements OnInit {
+  /**
+   * !Declare all variables for the component
+   */
   public formDog: FormGroup = new FormGroup({});
   public dataDog: any;
+  fields!: FormlyFieldConfig[];
+  model = {};
 
+  /**
+   * *Assign values to the fields variable to fill the form
+   *
+   * @return {void}
+   */
   @Input() set DogsComponent(data: any) {
     this.dataDog = data;
     const { dog } = this.dataDog ?? {};
@@ -157,13 +167,15 @@ export class CreateUpdateDogsComponent implements OnInit {
     ];
   }
 
-  fields!: FormlyFieldConfig[];
-  model = {};
-
   constructor(public modal: NgbActiveModal) {}
 
   ngOnInit(): void {}
 
+  /**
+   * *Send data to other component for processing data and send the record to server
+   *
+   * @return {void}
+   */
   onSubmit() {
     if (this.formDog.valid) {
       this.modal.close({ created: true, data: this.model });

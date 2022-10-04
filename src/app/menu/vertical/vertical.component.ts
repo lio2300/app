@@ -7,6 +7,9 @@ import { verticalMenu } from 'src/app/interfaces/verticalMenu.interfaces';
   styleUrls: ['./vertical.component.scss'],
 })
 export class VerticalComponent implements OnInit {
+  /**
+   * !Declare all variables for the component
+   */
   public verticalMenu: verticalMenu[] = [
     {
       name: 'Statistics',

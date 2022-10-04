@@ -10,6 +10,9 @@ import { ChartOptions } from 'chart.js';
   styleUrls: ['./dog-statistics.component.scss'],
 })
 export class DogStatisticsComponent implements OnInit {
+  /**
+   * !Declare all variables for the component
+   */
   public barChartLegend = true;
   public barChartPlugins = [];
 
@@ -22,27 +25,15 @@ export class DogStatisticsComponent implements OnInit {
     responsive: false,
   };
 
-  // Doughnut
-  public doughnutChartLabels: string[] = [
-    'Download Sales',
-    'In-Store Sales',
-    'Mail-Order Sales',
-  ];
-  public doughnutChartDatasets: ChartConfiguration<'doughnut'>['data']['datasets'] =
-    [
-      { data: [350, 450, 100], label: 'Series A' },
-      { data: [50, 150, 120], label: 'Series B' },
-      { data: [250, 130, 70], label: 'Series C' },
-    ];
-
-  public doughnutChartOptions: ChartConfiguration<'doughnut'>['options'] = {
-    responsive: false,
-  };
-
   public loading: boolean = true;
 
   constructor(private $DogsService: DogsServices) {}
 
+  /**
+   * *Load data from the server for show records in the charts
+   *
+   * @return {void}
+   */
   ngOnInit(): void {
     this.loading = true;
     this.$DogsService.getDogsStatistics().subscribe((dogs) => {
